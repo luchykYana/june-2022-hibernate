@@ -41,7 +41,9 @@ public class Main {
         session.save(new User("max", "golov", new Passport("asdfg", "47583")));
         session.save(new User("max2", "golov2", Gender.MALE, Arrays.asList("java", "js", "sql")));
 
-        session.save(new Card("1234 5678 3456 2345", user));
+        session.save(new User("user1", "surname1", Gender.MALE,
+                new Passport("qferty", "12145"),
+                Arrays.asList(new Card("1234 2345 4567 1234"), new Card("5432 2456 1245 6424"))));
 
         session.getTransaction().commit();
 
