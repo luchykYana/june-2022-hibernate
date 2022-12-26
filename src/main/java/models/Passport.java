@@ -1,9 +1,6 @@
 package models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -18,6 +15,8 @@ public class Passport {
     private int id;
     private String series;
     private String number;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "passport")
+    private User user;
 
     public Passport(String series, String number) {
         this.series = series;
