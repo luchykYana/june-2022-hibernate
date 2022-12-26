@@ -3,6 +3,8 @@ package models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -24,6 +26,10 @@ public class User {
             length = 250
     )
     private String surname;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    @ElementCollection
+    private List<String> skills;
 
     public User(String name, String surname) {
         this.name = name;
@@ -32,5 +38,18 @@ public class User {
 
     public User(String name) {
         this.name = name;
+    }
+
+    public User(String name, String surname, Gender gender) {
+        this.name = name;
+        this.surname = surname;
+        this.gender = gender;
+    }
+
+    public User(String name, String surname, Gender gender, List<String> skills) {
+        this.name = name;
+        this.surname = surname;
+        this.gender = gender;
+        this.skills = skills;
     }
 }
