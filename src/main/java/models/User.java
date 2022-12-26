@@ -30,6 +30,9 @@ public class User {
     private Gender gender;
     @ElementCollection
     private List<String> skills;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "passport_id", referencedColumnName = "id")
+    private Passport passport;
 
     public User(String name, String surname) {
         this.name = name;
@@ -51,5 +54,11 @@ public class User {
         this.surname = surname;
         this.gender = gender;
         this.skills = skills;
+    }
+
+    public User(String name, String surname, Passport passport) {
+        this.name = name;
+        this.surname = surname;
+        this.passport = passport;
     }
 }
