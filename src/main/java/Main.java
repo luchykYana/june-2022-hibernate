@@ -1,7 +1,4 @@
-import models.Card;
-import models.Gender;
-import models.Passport;
-import models.User;
+import models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -24,6 +21,7 @@ public class Main {
                         .addAnnotatedClass(User.class)
                         .addAnnotatedClass(Passport.class)
                         .addAnnotatedClass(Card.class)
+                        .addAnnotatedClass(Sunglass.class)
                         .getMetadataBuilder()
                         .build();
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
@@ -44,6 +42,11 @@ public class Main {
         session.save(new User("user1", "surname1", Gender.MALE,
                 new Passport("qferty", "12145"),
                 Arrays.asList(new Card("1234 2345 4567 1234"), new Card("5432 2456 1245 6424"))));
+
+        session.save(new User("name3", "surname3",
+                Arrays.asList(new Sunglass("brand1"), new Sunglass("brand2"))));
+
+        session.save(new Sunglass("brand2", Arrays.asList(user, new User("name12", "surname12"))));
 
         session.getTransaction().commit();
 
